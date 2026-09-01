@@ -1,3 +1,4 @@
+
 version: "3.8"
 
 services:
@@ -5,8 +6,6 @@ services:
   redis:
     image: redis:6-alpine
     container_name: redis
-    ports:
-      - "6379:6379"
     networks:
       - todo-net
     command: redis-server --appendonly yes
@@ -17,8 +16,6 @@ services:
       context: ./todo
       dockerfile: Dockerfile
     container_name: todo-service
-    ports:
-      - "8001:8000"
     networks:
       - todo-net
     environment:
@@ -35,8 +32,6 @@ services:
       context: ./todo-notification
       dockerfile: Dockerfile
     container_name: todo-notification-service
-    ports:
-      - "9000:9000"
     networks:
       - todo-net
     environment:
